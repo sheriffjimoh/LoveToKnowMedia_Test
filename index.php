@@ -1,14 +1,15 @@
 <?php
 
  /**
-  * 
+  *  start the magic
+     author:: jimoh sherifdeen
   */
  class MainClass
  {
    
 
 	   public $file;
-	   // public 
+
 
 	   function __construct($filename)
 	   {
@@ -23,17 +24,17 @@
 	 	}
       
 
-        public function GetFilesSumBase_1($arr_filez)
+        public function ArrFileSumBase_1($arr_filez)
         {
-        	 	if (is_array($arr_filez) ) {
+        	if (is_array($arr_filez) ) {
 	      	   $sum = 0;
 
 	      	   for ($i=0; $i < count($arr_filez) ; $i++) { 
-	      	    $readinfiles = fopen($arr_filez[$i], 'r');
+	      	       $readinfiles = fopen($arr_filez[$i], 'r');
 
-		      	     while(!feof($readinfiles)) {
+		      	    while(!feof($readinfiles)) {
 
-		 		  	     $linepeice = fgets($readinfiles);
+		 		  	    $linepeice = fgets($readinfiles);
 
 			 		  	if (is_numeric($linepeice)) {
 			 		  	   $sum  += $linepeice;
@@ -45,18 +46,18 @@
 	      	}
         }
 
-	      public function GetFilesSum($arr_filez)
-	      {
+	    public function ArrFileSum($arr_filez)
+	    {
 	      	if (is_array($arr_filez) ) {
 	      	   $sum = 0;
 	      	   $new_arr_file = array();
 
 	      	   for ($i=0; $i < count($arr_filez) ; $i++) { 
-	      	    $readinfiles = fopen($arr_filez[$i], 'r');
+	      	        $readinfiles = fopen($arr_filez[$i], 'r');
 
-		      	     while(!feof($readinfiles)) {
+		      	    while(!feof($readinfiles)) {
 
-		 		  	     $linepeice = fgets($readinfiles);
+		 		  	    $linepeice = fgets($readinfiles);
 
 			 		  	if (is_numeric($linepeice)) {
 			 		  	   $sum  += $linepeice;
@@ -69,24 +70,24 @@
 		 		}
 
 
-		 		if (!empty($new_arr_file)) {
-		 			  $result = $this->GetFilesSumBase_1($new_arr_file);
-		 		}else{
-		 			$result = 0;
+		 	if (!empty($new_arr_file)) {
+		 	     $result = $this->ArrFileSumBase_1($new_arr_file);
+		    }else{
+		 		  $result = 0;
 		 		}
           
-               if ($result > 0) {
+            if ($result > 0) {
               	$an  =  $result+$sum;
-              }else{
+            }else{
               	$an =  $sum;
-              }
+            }
 
               return $an;
 
 	      	}
-	      }
+	    }
  	
-	 	public function SumReadinValues()
+	 	public function Main_Sum_Engine()
 	 	{
 	 		 $sum = 0;
 	 		 $an = 0;
@@ -107,7 +108,7 @@
 	 		  	}
 	 		  }
            
-              $result = $this->GetFilesSum($arr_filez);
+              $result = $this->ArrFileSum($arr_filez);
 
               if ($result > 0) {
               	$an  =  $result+$sum;
@@ -120,60 +121,60 @@
               }else{
               	$sub_file = "null";
               }
-              // return $result;
-
+          
 	 		 return  array('sum' =>$an , 'main_file' => $this->Readinfile(),  'sub_files' =>$sub_file);
 	 		
 	 	}
 
 
     
-
-
- 	// public function Mainfile()
- 	// {
- 	// 	return $this->files;
- 	// }
  }
 
 
 
 
 
+/**********Initiate The Classs  And Supply A File Path To Process**********/
 
-$class =  new MainClass("file.txt");
+$class =  new MainClass("file4.txt");
 
+
+echo "*******************************************************************";
+echo "<br>";
+/************************Get The Supplied File Path***********************/
 $Readin =  $class->Readinfile();
 
-$sumvalues = $class->SumReadinValues();
+echo "Main File Path ::  ".$Readin."<br>";
 
-// $arr_filez = array('song.txt','video.txt','file.txt');
 
-// print_r($arr_filez);
-// array of files
-// $arr_file_sum = $class->GetFilesSum($arr_filez);
+echo "********************************************************************";
+echo "<br>";
+
+/*************Sum All The Integer Values In The Array Of Files*************/
+
+$arr_filez = array('file1.txt','file2.txt','file3.txt','file4.txt');
+
+$arr_file_sum = $class->ArrFileSum($arr_filez);
+
+echo "Total Sum For All Files In The Array ::".$arr_file_sum;
+
+/*************Get The Files Dtetails, Sum,Subfiles and Main File Path*************/
+
+echo "<br>";
+echo "********************************************************************";
+echo "<br>";
+//initiate the function
+$sumvalues = $class->Main_Sum_Engine();
+
+
+echo "Get The Files Dtetails, Sum,Subfiles and Main File Path";
+echo "<br>";
 echo "<pre>";
 print_r($sumvalues);
 echo "</pre>";
 
-// print_r($arr_file_sum);
-// $sum = 0;
 
 
-// echo $sum;
-// 
-
-// $myfile = fopen("file.txt", "r") or die("Unable to open file!");
-// Output one line until end-of-file
-
-//  while(!feof($myfile)) {
-  
-//   $result = $class->sumvalues(fgets($myfile));
-  
-
-// echo "<br>";
-// }
 
 
-// echo  $result;
 ?>
