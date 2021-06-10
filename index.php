@@ -122,7 +122,7 @@
               	$sub_file = "null";
               }
           
-	 		 return  array('sum' =>$an , 'main_file' => $this->Readinfile(),  'sub_files' =>$sub_file);
+	 		 return  array('Main File Sum' =>$sum ,'Sub Files Sum'=> $result, 'Total Sum'=> $an, 'main_file' => $this->Readinfile(),  'sub_files' =>$sub_file);
 	 		
 	 	}
 
@@ -136,7 +136,7 @@
 
 /**********Initiate The Classs  And Supply A File Path To Process**********/
 
-$class =  new MainClass("file4.txt");
+$class =  new MainClass("file.txt");
 
 
 echo "*******************************************************************";
